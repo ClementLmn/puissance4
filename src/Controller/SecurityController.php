@@ -30,12 +30,6 @@ class SecurityController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            dump($lastUsername);
-            die();
-
-        }
-
         return [
             'last_username' => $lastUsername,
             'error' => $error,
