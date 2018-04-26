@@ -4,8 +4,22 @@
 
 {% block body %}
 
-<div class="example-wrapper">
+<div class="container mt-10">
     <h1>Hello {{ app.user.username }} !</h1>
 
+    <div>
+        {% for game in games %}
+            <div class="container">
+                {{ dump(game) }}
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <form action="{{ path('create') }}" method="post">
+        <button class="btn-secondary btn mt-5 mb-5" type="submit">Create a new game</button>
+    </form>
+
+    <a href="{{ path('logout') }}">Logout</a>
 </div>
 {% endblock %}

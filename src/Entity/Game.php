@@ -20,19 +20,18 @@ class Game
 
     /**
      * @var Player
-     * @ORM\OneToOne(targetEntity="Player")
+     * @ORM\ManyToOne(targetEntity="Player")
      */
     private $player1;
 
     /**
      * @var Player
-     * @ORM\OneToOne(targetEntity="Player")
+     * @ORM\ManyToOne(targetEntity="Player")
      */
     private $player2;
 
     /**
-     * @var Player
-     * @ORM\OneToOne(targetEntity="Player")
+     * @ORM\Column(type="boolean")
      */
     private $whosTurn;
 
@@ -62,7 +61,7 @@ class Game
         return $this->player1;
     }
 
-    public function setPlayer1(string $player1): self
+    public function setPlayer1(?Player $player1): self
     {
         $this->player1 = $player1;
 
@@ -74,7 +73,7 @@ class Game
         return $this->player2;
     }
 
-    public function setPlayer2(string $player2): self
+    public function setPlayer2(Player $player2): self
     {
         $this->player2 = $player2;
 
@@ -86,19 +85,19 @@ class Game
         return $this->winner;
     }
 
-    public function setWinner(string $winner): self
+    public function setWinner(Player $winner): self
     {
         $this->winner = $winner;
 
         return $this;
     }
 
-    public function getWhosTurn(): ?Player
+    public function getWhosTurn(): ?bool
     {
         return $this->whosTurn;
     }
 
-    public function setWhosTurn(string $whosTurn): self
+    public function setWhosTurn(bool $whosTurn): self
     {
         $this->whosTurn = $whosTurn;
 

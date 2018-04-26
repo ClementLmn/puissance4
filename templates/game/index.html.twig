@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <form method="post" action="{{ path('create_game') }}">
+            <select name='player2'>
+                {% for player in players %}
+                    <option value="{{ player.id }}">{{ player.pseudo }}</option>
+                {% endfor %}
+            </select>
+            <button class="btn-primary btn mt-5 mb-5" type="submit">CHALLENGE NOW</button>
+        </form>
+
+
+    </div>
+{% endblock %}

@@ -30,6 +30,19 @@ class PlayerRepository extends ServiceEntityRepository implements UserLoaderInte
             ->getOneOrNullResult();
     }
 
+    public function findOtherPlayer($me): array
+    {
+
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p != :me')
+            ->setParameter('me', $me)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery();
+
+        return $qb->execute();
+
+    }
+
 //    /**
 //     * @return Player[] Returns an array of Player objects
 //     */

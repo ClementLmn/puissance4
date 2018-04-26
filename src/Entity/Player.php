@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -45,6 +46,11 @@ class Player implements UserInterface
     private $plainPassword;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="owner")
+     */
+    private $games;
+
+    /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
@@ -52,8 +58,8 @@ class Player implements UserInterface
     public function __construct()
     {
         $this->isActive = true;
+        $this->games = new ArrayCollection();
     }
-
 
 
     public function getId()
@@ -153,5 +159,23 @@ class Player implements UserInterface
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized, ['allowed_classes' => false]);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getGames(): ArrayCollection
+    {
+        return $this->games;
+    }
+
+    public function addGame(Game $game): self
+    {
+        if (!$this->games->contains($game)) {
+            $this->games[] = $game;
+            $game->setPlayer1($this);
+        }
+
+        return $this;
     }
 }
