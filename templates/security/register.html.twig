@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign in{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <h1>Home logged</h1>
+        <p>Logged in {{ lastUsername }}</p>
+    {% else %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <h1>{{ 'login.login'|trans }}</h1>
+
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    <div class="row">
+                        <div class="col-12">
+                            <p>{{ last_username }}</p>
+                        </div>
+                    </div>
+
+                    <form action="{{ path('register') }}" method="post">
+                        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
