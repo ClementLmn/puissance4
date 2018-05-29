@@ -31,12 +31,13 @@ class Game
     private $player2;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @var Player
+     * @ORM\ManyToOne(targetEntity="Player")
      */
     private $whosTurn;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="array")
      */
     private $grid;
 
@@ -73,7 +74,7 @@ class Game
         return $this->player2;
     }
 
-    public function setPlayer2(Player $player2): self
+    public function setPlayer2(?Player $player2): self
     {
         $this->player2 = $player2;
 
@@ -92,12 +93,12 @@ class Game
         return $this;
     }
 
-    public function getWhosTurn(): ?bool
+    public function getWhosTurn(): ?Player
     {
         return $this->whosTurn;
     }
 
-    public function setWhosTurn(bool $whosTurn): self
+    public function setWhosTurn(Player $whosTurn): self
     {
         $this->whosTurn = $whosTurn;
 
@@ -116,13 +117,14 @@ class Game
         return $this;
     }
 
-    public function getGrid(): ?string
+    public function getGrid(): ?array
     {
         return $this->grid;
     }
 
-    public function setGrid(string $grid): self
+    public function setGrid(array $grid): self
     {
+
         $this->grid = $grid;
 
         return $this;

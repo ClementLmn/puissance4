@@ -1,0 +1,22 @@
+.plate{
+  display: flex;
+  width: 100%;
+  .column{
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    outline: 1px solid grey;
+    height: 100%;
+  }
+  .plate-row{
+    height: 100px;
+    border-radius: 50%;
+    width: 100px;
+    &.player1{
+      background-color: dodgerblue;
+    }
+    &.player2{
+      background-color: orangered;
+    }
+  }
+}

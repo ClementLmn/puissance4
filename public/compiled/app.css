@@ -1,2 +1,19 @@
+.plate {
+  display: flex;
+  width: 100%; }
+  .plate .column {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
+    outline: 1px solid grey;
+    height: 100%; }
+  .plate .plate-row {
+    height: 100px;
+    border-radius: 50%;
+    width: 100px; }
+    .plate .plate-row.player1 {
+      background-color: dodgerblue; }
+    .plate .plate-row.player2 {
+      background-color: orangered; }
 
 /*# sourceMappingURL=app.css.map*/

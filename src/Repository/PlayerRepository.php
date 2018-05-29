@@ -43,6 +43,16 @@ class PlayerRepository extends ServiceEntityRepository implements UserLoaderInte
 
     }
 
+    public function findOneById($value): ?Player
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
 //    /**
 //     * @return Player[] Returns an array of Player objects
 //     */
