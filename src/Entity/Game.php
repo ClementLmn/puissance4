@@ -47,8 +47,7 @@ class Game
     private $isOver;
 
     /**
-     * @var Player
-     * @ORM\OneToOne(targetEntity="Player")
+     * @ORM\ManyToOne(targetEntity="Player")
      */
     private $winner;
 

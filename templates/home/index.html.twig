@@ -4,13 +4,20 @@
 
 {% block body %}
 
-<div class="container mt-10">
+<div class="container mt-5 text-center">
     <h1>Hello {{ app.user.username }} !</h1>
 
     <div>
         {% for game in games %}
-            <div class="container">
-                {{ dump(game) }}
+            <div class="container mt-5">
+                <h3>Game n°{{ game.id }}</h3>
+                <span>{{ game.player1.pseudo }}</span> VS <span>{{ game.player2.pseudo }}</span><br>
+                {% if game.isOver %}
+                    <span>Game is over</span><br>
+                {% else %}
+                    <span>It's {{ game.whosTurn.pseudo }}'s turn</span><br>
+                {% endif %}
+                <a href="{{ path('game_detail', { 'gameId': game.id }) }}">See ➝</a>
             </div>
         {% endfor %}
 

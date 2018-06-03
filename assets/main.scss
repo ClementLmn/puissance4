@@ -1,8 +1,9 @@
 .plate{
   display: flex;
+  justify-content: center;
   width: 100%;
   .column{
-    background-color: lightgrey;
+    background-color: #ececec;
     display: flex;
     flex-direction: column;
     outline: 1px solid grey;
@@ -19,4 +20,12 @@
       background-color: orangered;
     }
   }
+}
+.blue{
+  font-weight: 700;
+  color: dodgerblue;
+}
+.red{
+  font-weight: 700;
+  color: orangered;
 }

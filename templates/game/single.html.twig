@@ -4,9 +4,17 @@
 
 {% block body %}
     <div class="container">
+        <div class="container mt-5 text-center">
+            <h1>
+                Game n°{{ game.id }}
+            </h1>
+            <span class="blue">{{ game.player1.pseudo }}</span> VS <span class="red">{{ game.player2.pseudo }}</span>
+            {% if game.isOver %}
+                <h2>It's over. {{ game.winner.pseudo }} won !</h2>
+            {% endif %}
 
-        {{ dump(game) }}
-        <div class="plate container">
+        </div>
+        <div class="plate container mt-5 mb-5">
             {% for col in game.grid %}
                 <div class="column">
                     {% for row in col %}
@@ -23,35 +31,35 @@
                 </div>
             {% endfor %}
         </div>
-
-
-        <div class="container">
-            {% if app.user is same as(game.whosTurn) %}
-                <form method="post" action="{{ path('game_turn') }}">
-                    <input type="radio" id="col1" checked name="col" value="1">
-                    <label for="col1">1</label>
-                    <input type="radio" id="col2" name="col" value="2">
-                    <label for="col2">2</label>
-                    <input type="radio" id="col3" name="col" value="3">
-                    <label for="col3">3</label>
-                    <input type="radio" id="col4" name="col" value="4">
-                    <label for="col4">4</label>
-                    <input type="radio" id="col5" name="col" value="5">
-                    <label for="col5">5</label>
-                    <input type="radio" id="col6" name="col" value="6">
-                    <label for="col6">6</label>
-                    <input type="radio" id="col7" name="col" value="7">
-                    <label for="col7">7</label>
-                    <input type="hidden" name="id" value="{{ game.id }}"/>
-                    <button class="btn-primary btn mt-5 mb-5" type="submit">PLAY</button>
-                </form>
-            {% elseif ((app.user is same as(game.player1)) or (app.user is same as(game.player2)))  %}
-                <h2>ATTEND TON TOUR</h2>
-            {% else %}
-                <h2>TU ES SPECTATEUR</h2>
-            {% endif %}
-
-        </div>
+        {% if game.isOver == false %}
+            <div class="container mb-5">
+                {% if app.user is same as(game.whosTurn) %}
+                    <h2 class="text-center">À TOI DE JOUER</h2>
+                    <form method="post" action="{{ path('game_turn') }}">
+                        <input type="radio" id="col1" checked name="col" value="1">
+                        <label for="col1">1</label>
+                        <input type="radio" id="col2" name="col" value="2">
+                        <label for="col2">2</label>
+                        <input type="radio" id="col3" name="col" value="3">
+                        <label for="col3">3</label>
+                        <input type="radio" id="col4" name="col" value="4">
+                        <label for="col4">4</label>
+                        <input type="radio" id="col5" name="col" value="5">
+                        <label for="col5">5</label>
+                        <input type="radio" id="col6" name="col" value="6">
+                        <label for="col6">6</label>
+                        <input type="radio" id="col7" name="col" value="7">
+                        <label for="col7">7</label>
+                        <input type="hidden" name="id" value="{{ game.id }}"/>
+                        <button class="btn-primary btn mt-5 mb-5" type="submit">PLAY</button>
+                    </form>
+                {% elseif ((app.user is same as(game.player1)) or (app.user is same as(game.player2)))  %}
+                    <h2 class="text-center">ATTENDS TON TOUR</h2>
+                {% else %}
+                    <h3 class="text-center">TU ES SPECTATEUR</h3>
+                {% endif %}
+            </div>
+        {% endif %}
 
     </div>
 {% endblock %}
